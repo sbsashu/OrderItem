@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OrderItem</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <style>
+  	.dv{
+  		margin-top: 5px;
+  		margin-bottom: 5px;
+  	}
+  </style>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Web Application : OrderItem </h1>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4" rowspan="10">
+			<button id='btnGet' onclick="GetOrderItem()" class="btn btn-info">Get  </button>
+		<!-- <div class="dv"> <input type="text" id='clientid'></div> -->
+			<div class="dv"> <input type="text" id='EmployeeName'> </div>
+			<div class="dv"> <input type="text" id='EmployeeAddress'> </div>
+			<div class="dv"> <input type="text" id='EmployeeSalary'> </div>
+		</div>
+		<div class="col-md-8">
+			<table class="table table-striped" id='tbl'> 
+			</table>
+			<p id="employee">Test </p>
+		</div>
+	</div>
+
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+var SelectedId='test';
+$(document).ready(function(){
+	console.log('Ready');
+})
+
+function GetOrderItem()
+{
+	$.ajax(
+	{
+		url:'http://localhost:3000/getorderitem',
+		type : 'get',
+		success : function(Response){
+			console.log(Response);
+			$('#employee').text(JSON.stringify(Response[6].empname));
+		}
+	}
+	)
+}
+</script>
